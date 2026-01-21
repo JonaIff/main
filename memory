@@ -1,0 +1,35 @@
+import RPi.GPIO as GPIO
+import random
+import time
+
+led = [6,13,19,26]
+
+randomizer_led = []
+
+GPIO.setmode(GPIO.BCM)
+GPIO.setwarnings(False)
+
+for i in led:
+    GPIO.setup(i, GPIO.OUT)
+for i in led:
+    GPIO.output(i,GPIO.HIGH)
+time.sleep(2)
+for i in led:
+    GPIO.output(i,GPIO.LOW)
+    
+
+while True:
+
+    for i in led:
+        led_pin = random.choice(led)
+
+        randomizer_led.append(led_pin)
+
+        GPIO.output(led_pin, GPIO.HIGH)
+        time.sleep(0.5)
+        GPIO.output(led_pin, GPIO.LOW)
+        time.sleep(0.5)
+
+
+    
+
